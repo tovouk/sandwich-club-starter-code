@@ -12,6 +12,8 @@ import com.squareup.picasso.Picasso;
 import com.udacity.sandwichclub.model.Sandwich;
 import com.udacity.sandwichclub.utils.JsonUtils;
 
+import java.util.List;
+
 public class DetailActivity extends AppCompatActivity {
 
     public static final String EXTRA_POSITION = "extra_position";
@@ -67,11 +69,27 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void populateUI(Sandwich sandwich) {
-        alsoKnownAsTv.setText(sandwich.getAlsoKnownAs().toString());
+
         originTv.setText(sandwich.getPlaceOfOrigin());
         descriptionTv.setText(sandwich.getDescription());
-        ingredientsTv.setText(sandwich.getIngredients().toString());
+        loopList(ingredientsTv,sandwich.getIngredients());
+        loopList(alsoKnownAsTv,sandwich.getAlsoKnownAs());
     }
 
-    
+    //loop through List and add each element and a line break for better UI
+    private void loopList(TextView view, List<String> list){
+        String s = "";
+        //mostly for alsoKnownAs, will set view text to N/A if no other alias is found
+        if(list == null || list.size() == 0){
+            s = "N/A";
+        }else{
+            for(int i =0;i<list.size();i++){
+                s += i+1+". " + list.get(i) + "\n";
+            }
+        }
+        view.setText(s);
+
+    }
+
+
 }
