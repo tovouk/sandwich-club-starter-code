@@ -1,5 +1,10 @@
 package com.udacity.sandwichclub.utils;
 
+/*
+Used Android Docs for JSONObject as a reference
+https://developer.android.com/reference/org/json/JSONObject
+ */
+
 import android.util.Log;
 
 import com.udacity.sandwichclub.model.Sandwich;
